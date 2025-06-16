@@ -1,0 +1,97 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex:1!important; 
+}
+.listing-link{
+    text-decoration: none !important;
+}
+/* navbar */
+.navbar{
+    height: 5rem;
+}
+
+.fa-compass{
+    color:#fe424d;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #222222 !important;
+}
+.navbar{
+    background-color: white !important;
+}
+/* footer */
+.f-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #ebebeb;
+    height:8rem;
+}
+.f-info-links ,.f-info-socials,.f-info-brand{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+.f-info-links a{
+    vertical-align: middle;
+    text-decoration: none;
+    color:#222222;
+}
+
+.f-info-links a:hover{
+    text-decoration:underline;
+}
+
+.f-info-socials a i{
+    font-size: 1.2rem;
+    padding: 6px;
+    vertical-align: middle;
+}
+
+/* card */
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem !important;
+}
+.card-img-top{
+    width:100% !important;
+    border-radius: 1rem !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0rem !important;
+}
+
+.card-text {
+    font-weight: 600;
+    font-size:.8rem !important;
+}
+
+.card-title{
+    font-weight:620;
+    font-size:.9rem;
+    padding:0;
+}
+/* card effect */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+.price-tag{
+    opacity: 0.9;
+}
+
+.tax-tag{
+    opacity:0.9;
+}

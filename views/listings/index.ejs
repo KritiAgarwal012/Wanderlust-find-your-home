@@ -1,0 +1,175 @@
+<% layout("/layouts/boilerplate")%>
+<style>
+    .filters{
+        display: flex;
+        padding:1rem;
+        align-content: center;
+        text-align: center;
+        
+    }
+    .filter a{
+        text-decoration: none;
+        color: black;
+    }
+    .filter{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding:1rem;
+        opacity:0.6;
+    }
+    
+    .filter:hover{
+        opacity:1;
+        cursor:pointer;
+    }
+
+    .disbutton {
+        margin-top:.6rem;
+        margin-left: auto;
+        /* border:1px solid black; */
+        display: flex;
+        align-content: center;
+        border-radius: 1.5rem;
+      
+    }
+</style>
+
+    
+    <div class="filters">
+        <div class="filter">
+            <a href="/listings">
+                <i class="fa-solid fa-star"></i>
+                <p>All</p>
+            </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Mountain">
+                <i class="fa-solid fa-mountain"></i>
+                <p>Mountain</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Camping">
+                <i class="fa-solid fa-campground"></i>
+                <p>Camping</p>
+            </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Apartement">
+                <i class="fa-solid fa-building"></i>
+                <p>Apartments</p>
+            </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Villas">
+                <i class="fa-solid fa-house"></i>
+                <p>Villas</p>
+            </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Arctic">
+                <i class="fa-regular fa-snowflake"></i>
+                <p>Arctic</p>
+            </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Beaches">
+                <i class="fa-solid fa-umbrella-beach"></i>
+                <p>Beaches</p>
+            </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Pools">
+                <i class="fa-solid fa-person-swimming"></i>
+                <p>Pools</p>
+            </a>
+            
+        </div>
+        
+        <div class="filter">
+            <a href="/listings/category?category=Rooms">
+                <i class="fa-solid fa-bed"></i>
+                <p>Rooms</p>
+        </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Farms">
+                <i class="fa-solid fa-tractor"></i>
+                <p>Farms</p>
+            </a>
+            
+        </div>
+        <div class="filter">
+            <a href="/listings/category?category=Boating">
+                <i class="fa-solid fa-ship"></i>
+                <p>Boating</p>
+            </a>
+            
+        </div>
+        
+        <button type="button" class="btn btn-light disbutton" style="height:2.4rem">
+                <div class="form-check form-switch "  id="display-taxes"  >
+            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+            <label class="form-check-label" for="switchCheckDefault">Show with taxes</label>
+            </div>
+        </button>
+        
+        
+    </div>
+    <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-2">
+        <% for(let listing of listings){%>
+            <a href="/listings/<%=listing._id%>" class="listing-link">
+            <div class="card listing-card col" >
+                <img src="<%=listing.image.url%>" class="card-img-top" alt="<%=listing.title%>_image " style="height: 12rem;">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text">
+                       <b class="card-title"><%=listing.title%></b> 
+                        <br>
+                         <span class="price-tag">&#8377; <%=listing.price.toLocaleString("en-IN")%>/night</span>
+                       <%val=listing.price*1.18%>
+                       <span class="tax-tag" style="display: none;">&#8377; <%=val.toLocaleString("en-IN")%>/night</span>
+                    </p>
+                </div>
+            </div>
+        </a>
+        <%}%>
+    </div>
+    <script>
+        let distax=document.getElementById("display-taxes");
+        distax.addEventListener("change",(event)=>{
+            let prices=document.getElementsByClassName("price-tag");
+            let taxes=document.getElementsByClassName("tax-tag");
+            if(event.target.checked){
+                for(let price of prices){
+                    price.style.display="none";
+                }
+                for(let tax of taxes){
+                    tax.style.display="inline";
+                }
+            }
+            else{
+                 for(let price of prices){
+                    price.style.display="inline";
+                }
+                for(let tax of taxes){
+                    tax.style.display="none";
+                }
+            }
+            
+
+        })
+        
+    </script>
+
+
+

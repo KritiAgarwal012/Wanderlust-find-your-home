@@ -1,0 +1,72 @@
+<% layout("/layouts/boilerplate")%>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h3>Enter details of new listing</h3>
+    <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+             <input name="listing[title]" id="title" placeholder="enter title" type="text" class="form-control" required>
+             <div class="invalid-feedback">Enter a title</div>
+        </div>
+       <div class="mb-3">
+            <label for="desc" class="form-label">Description</label>
+            <textarea name="listing[description]" id="desc" placeholder="enter description" type="text" class="form-control" required></textarea>
+             <div class="invalid-feedback">Enter a short description</div>
+       </div>
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <select id="category" name="listing[category]" class="form-select" required>
+        <option value="">Select a Category</option>
+        <option value="Mountain">Mountain</option>
+        <option value="Camping">Camping</option>
+        <option value="Beaches">Beaches</option>
+        <option value="Arctic">Arctic</option>
+        <option value="Villas">Villas</option>
+        <option value="Apartement">Apartement</option>
+        <option value="Rooms">Rooms</option>
+        <option value="Pools">Pools</option>
+        <option value="Farms">Farms</option>
+        <option value="Boating">Boating</option>
+    </select>
+    <div class="invalid-feedback">Select a Category</div>
+</div>
+
+        <!-- <div class="mb-3">
+            <label for="desc" for="img"class="form-label">Image</label>
+            <input name="listing[image]" id="img" placeholder="enter image url" type="text" class="form-control">
+            
+        </div> -->
+        <div class="mb-3">
+            <label for="desc" for="img"class="form-label">Upload Listing Image</label>
+            <input name="listing[image]" id="img" type="file" class="form-control" required>
+            <div class="invalid-feedback">Upload a image</div>
+            
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input name="listing[price]" id="price" placeholder="enter price" type="number" class="form-control" required>
+             <div class="invalid-feedback">Enter a price</div>
+        </div>
+            
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="country" class="form-label">Country</label>
+                <input name="listing[country]" id="country" placeholder="enter country" type="text" class="form-control" required>
+                 <div class="invalid-feedback">Enter a country</div>
+            </div>
+            <div class="mb-3 col-md-8">
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]" id="location" placeholder="enter location" type="text" class="form-control" required>
+                 <div class="invalid-feedback">Enter a location</div>
+            </div>
+        </div>
+        <br>
+        
+        <button class="btn btn-dark">Add</button>
+
+        <br><br>
+    </form>
+    </div>
+    </div>
+</body>

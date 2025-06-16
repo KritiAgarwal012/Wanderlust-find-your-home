@@ -1,0 +1,21 @@
+/* .dive{
+    display: flex;
+} */
+
+h3{
+    padding:1rem;
+}
+
+
+.image-me img{
+    border-radius: 2.5rem;
+    height:20rem;
+    width:100%;
+    object-fit: cover;  
+    margin-bottom: 1.5rem;
+    box-shadow: 1px 1px 8px black;
+}
+
+.btn{
+    margin:.2rem 1rem .5rem 0rem;
+}
