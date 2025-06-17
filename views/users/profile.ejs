@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplate")%>
+<div class="profile">
+    <h6><%=user.username%></h6>
+    <p><b>Email:</b><%=user.email%></p>
+    
+    <h3>See all your listings:</h3>
+        <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-2">
+        <% for(let listing of user.listings){%>
+            <a href="/listings/<%=listing._id%>" class="listing-link">
+            <div class="card listing-card col" >
+                <img src="<%=listing.image.url%>" class="card-img-top" alt="<%=listing.title%>_image " style="height: 12rem;">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text">
+                       <b class="card-title"><%=listing.title%></b> 
+                        <br>
+                         <span class="price-tag">&#8377; <%=listing.price.toLocaleString("en-IN")%>/night</span>
+                       <%val=listing.price*1.18%>
+                       <span class="tax-tag" style="display: none;">&#8377; <%=val.toLocaleString("en-IN")%>/night</span>
+                    </p>
+                </div>
+            </div>
+        </a>
+        <%}%>
+        
+    </div>
+    <br><br>
+        <div class="reviews row">
+            <hr>
+            <h5 > Your Reviews</h5>
+            <p ><b></b></p>
+            
+            <%for(let review of user.reviews) {%>
+                <a href="/listings/<%=review.listing._id%>" class="listing-link">
+                <div class="card col-5 offset-1  mt-3 mb-3" style="padding: .5rem;">
+                    <div class="card-body">
+                        <div class="card-title"><b><%=review.author.username%></b></div>
+                        <p class="starability-result" data-rating="<%=review.rating%>"></p>
+                        <div class="card-text"><%=review.comment%></div>
+                    </div>
+                </div>
+            </a>
+            <%}%>
+        </div>
+</div>

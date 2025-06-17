@@ -48,3 +48,27 @@ module.exports.logout=(req,res,next)=>{
     })
     
 };
+
+module.exports.userProfile=async(req,res)=>{
+    let {id} = req.params;
+    let user= await User.findById(id)
+    .populate(
+        {
+            path:"reviews",
+            populate:{path:"author"}
+        })
+    .populate(
+        {
+            path:"listings",
+            populate:[
+                {
+                    path:"reviews",
+                    populate:{path:"author"}
+                },
+                {
+                    path:"owner"
+                }
+            ]
+        });
+    res.render("users/profile.ejs",{user});
+};

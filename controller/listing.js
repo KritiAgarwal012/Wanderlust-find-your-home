@@ -1,5 +1,5 @@
 const Listing = require("../models/listing");
-
+const User = require("../models/user");
 module.exports.index=async(req,res)=>{
     let listings= await Listing.find();
     // console.log(listings);
@@ -41,11 +41,15 @@ module.exports.renderNewForm=(req,res)=>{
 module.exports.createListing=async(req,res)=>{
     let url= req.file.path;
     let filename= req.file.filename;
+    const userId = req.user._id;
+    let user= await User.findById(userId);
     console.log(url,filename);
     const newListings= new Listing(req.body.listing);
     newListings.owner = req.user._id;
     newListings.image={url,filename};
     await newListings.save();
+    user.listings.push(newListings);
+    await user.save();
     console.log(newListings);
     req.flash("success","New Listing Added!!")
     res.redirect("/listings");
@@ -88,6 +92,8 @@ module.exports.updateListing=async(req,res)=>{
 
 module.exports.destroyListing=async(req,res)=>{
     let {id} =req.params;
+    const userId = req.user._id;
+    await User.findByIdAndUpdate(userId,{$pull: {listings :id}});
     await Listing.findByIdAndDelete(id);
     req.flash("success","Listing Deleted Successfully!!")
     res.redirect("/listings");
